@@ -16,7 +16,7 @@ class speedometer():
         rect(self.posX,self.posY,210,210)
         pushMatrix()
         textFont(self.font)
-        text("Speed: " + str(float(self.speed*10)) + " mPH", self.posX+10, self.posY-5)
+        text("Speed: " + str('%.2f' % float(self.speed*10)) + " mPH", self.posX+10, self.posY-5)
         popMatrix()
         imageMode(CENTER)
         pushMatrix()

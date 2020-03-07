@@ -37,6 +37,7 @@ class phaneron():
         self.chunkTypes = temp[1]
         self.refTes = refTes
         self.minIndex = self.getminIndex()
+        self.dispImage = loadImage("../assets/teslaTopView.png")
         
     def update(self):
         self.minIndex = self.getminIndex()
@@ -48,5 +49,10 @@ class phaneron():
         rect(self.posX, self.posY, self.side, self.side)
         stroke(255)
         fill(255)
-        text(str(self.minIndex), self.posX + self.side/2, self.posY+ self.side/2)
+        imageMode(CENTER)
+        #text(str(self.minIndex), self.posX + self.side/2, self.posY+ self.side/2)
+        pushMatrix()
+        translate(self.posX + self.side/2, self.posY + self.side/2)
+        image(self.dispImage, 0, 0, 55, 110) #70% reduction in size
+        popMatrix()
     

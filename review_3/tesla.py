@@ -10,6 +10,7 @@ class tesla():
         self.distance = 0
         self.angle = 0
         self.speedometer = speedometer()
+        self.friction = 0.001
 
     def update(self):
         self.posX = self.posX + self.speed*sin(self.angle)
@@ -18,20 +19,24 @@ class tesla():
             self.speedometer.steeringTilt = self.speedometer.steeringTilt - PI/640
         else:
             self.speedometer.steeringTilt = self.speedometer.steeringTilt + PI/640
+        if(self.speed>0):
+            self.speed = self.speed - self.friction
+        if(self.speed<0):
+            self.speed = self.speed + self.friction
         
     def shift(self, argument):
         if (argument == "right"):
-            if(self.speed!=0):
+            if ((self.speed>0.01) or (self.speed<-0.01)):
                 self.angle  = self.angle + PI/30
                 self.speedometer.steeringTilt = self.speedometer.steeringTilt + PI/20
         elif (argument == "left"):
-            if(self.speed!=0):
+            if ((self.speed>0.01) or (self.speed<-0.01)):
                 self.angle = self.angle - PI/30
                 self.speedometer.steeringTilt = self.speedometer.steeringTilt - PI/20
         elif (argument == "up"):
-            self.speed += 0.25
+            self.speed += 0.05
         elif (argument == "down"):
-            self.speed -= 0.25
+            self.speed -= 0.05
             
     def show(self):
         self.update()
