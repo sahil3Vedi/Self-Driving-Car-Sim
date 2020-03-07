@@ -17,10 +17,10 @@ def setup():
 def draw():
     frameRate(50)
     background(20,200,20)
-    Road.show()
-    Tesla.show()
     Phaneron.update()
     Phaneron.show()
+    Road.show()
+    Tesla.show()
 
 def keyPressed():
     user_input = Klogger.logKey(key)
