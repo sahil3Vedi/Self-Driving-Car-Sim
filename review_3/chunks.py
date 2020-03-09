@@ -1,10 +1,11 @@
 class chunk():
     
-    def __init__(self,posX,posY,side,chunk_type):
+    def __init__(self,posX,posY,side,chunk_type,omit):
         self.posX = posX
         self.posY = posY
         self.side = side
         self.chunkType = chunk_type
+        self.omit = omit
         
     def show(self):
         rectMode(CENTER)
@@ -81,6 +82,6 @@ class chunk():
             line(self.posX+(self.side/2),self.posY-(self.side/4),self.posX+(self.side/2),self.posY+(self.side/4))
             line(self.posX-(self.side/2),self.posY-(self.side/4),self.posX-(self.side/2),self.posY+(self.side/4))
             
-def createChunk(posX, posY, side, chunk_type):
-    newChunk = chunk(posX, posY, side, chunk_type)
+def createChunk(posX, posY, side, chunk_type, omit):
+    newChunk = chunk(posX, posY, side, chunk_type, omit)
     return newChunk

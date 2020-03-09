@@ -2,6 +2,7 @@ from tesla import tesla
 from keylogger import keyLogger
 from roadMap import roadMap
 from phaneron import phaneron
+from lidar import lidar
 
 def setup():
     size(700,700)
@@ -9,10 +10,12 @@ def setup():
     global Klogger
     global Road
     global Phaneron
+    global Lidar
     Tesla = tesla()
     Klogger = keyLogger()
     Road = roadMap()
     Phaneron = phaneron(Road, Tesla)
+    Lidar = lidar(Phaneron, Tesla, 16, 2, 50)
     
 def draw():
     frameRate(50)
@@ -21,6 +24,8 @@ def draw():
     Phaneron.show()
     Road.show()
     Tesla.show()
+    Lidar.update()
+    Lidar.show()
 
 def keyPressed():
     user_input = Klogger.logKey(key)
