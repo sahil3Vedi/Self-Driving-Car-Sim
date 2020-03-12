@@ -1,7 +1,7 @@
 class speedometer():
     
     def __init__(self):
-        self.posX = 0
+        self.posX = 1120
         self.posY = 490
         self.steeringTilt = 0
         #self.keyLogger = keyLogger()

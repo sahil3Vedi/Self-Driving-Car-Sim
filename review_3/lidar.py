@@ -22,13 +22,26 @@ class lidar():
         xc = subCenter[0]
         yc = subCenter[1]
         if (subType == "UD"):
+            side = phaneron.side
             x1  = xc
             x2 = xc
-            y1 = yc - phaneron.side/2
-            y2 = yc + phaneron.side/2
+            y1 = yc - side/2
+            y2 = yc + side/2
             tesVal = self.findLineVal(x1,y1,x2,y2,xt,yt)
             dotVal = self.findLineVal(x1,y1,x2,y2,xf,yf)
-            if (tesVal!=dotVal):
+            if((tesVal!=dotVal)):
+                returnSub = 0
+        if (subType == "LR"):
+            side = phaneron.side
+            x1  = xc - side/2
+            x2 = xc + side/2
+            y1 = yc - side/2
+            y2 = yc + side/2
+            tesValMid = self.findLineVal(x1,yc,x2,yc,xt,yt)
+            dotValMid = self.findLineVal(x1,yc,x2,yc,xf,yf)
+            tesValLeft = self.findLineVal(x1,y1,x2,y1,xt,yt)
+            dotValLeft = self.findLineVal(x1,y1,x2,y1,xf,yf)
+            if((tesValMid!=dotValMid) or (tesValLeft!=dotValLeft)):
                 returnSub = 0
         return returnSub
     
@@ -47,8 +60,8 @@ class lidar():
             spokeDots = []
             for dotIndex in range(self.limiting):
                 r = dotIndex*self.spread 
-                xd = r*sin(angle)
-                yd = -r*cos(angle)
+                xd = -r*sin(angle)
+                yd = r*cos(angle)
                 dotVal = self.checkVal(xd,yd,phaneron)
                 spokeDots.append(dotVal)
             angle = angle + self.rotation
@@ -63,7 +76,7 @@ class lidar():
         self.count = count
         self.spread = spread
         self.limiting = limiting
-        self.rotation = PI/self.count
+        self.rotation = 2*PI/self.count
         self.dotMatrix = self.getDots(self.phaneron)
     
     def update(self):
@@ -75,9 +88,11 @@ class lidar():
         for spokes in range(self.count):
             for dots in range(self.limiting):
                 if(self.dotMatrix[spokes][dots] == 1):
-                    stroke(0,200,0)
-                    ellipse(0,self.spread*dots,1,1)
-                rotate(self.rotation)
+                    stroke(250)
+                else:
+                    stroke(200,0,0)
+                ellipse(0,self.spread*dots,1,1)
+            rotate(self.rotation)
         popMatrix()
         
         

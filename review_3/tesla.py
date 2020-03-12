@@ -4,11 +4,11 @@ class tesla():
     
     def __init__(self):
         self.posX = 315
-        self.posY = 490
+        self.posY = 595
         self.dispImage = loadImage("../assets/teslaTopView.png")
         self.speed = 0
         self.distance = 0
-        self.angle = 0
+        self.angle = PI/2
         self.speedometer = speedometer()
         self.friction = 0.001
 

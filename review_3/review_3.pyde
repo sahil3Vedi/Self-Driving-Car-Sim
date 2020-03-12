@@ -5,7 +5,7 @@ from phaneron import phaneron
 from lidar import lidar
 
 def setup():
-    size(700,700)
+    size(1330,700)
     global Tesla
     global Klogger
     global Road
@@ -15,7 +15,7 @@ def setup():
     Klogger = keyLogger()
     Road = roadMap()
     Phaneron = phaneron(Road, Tesla)
-    Lidar = lidar(Phaneron, Tesla, 16, 2, 50)
+    Lidar = lidar(Phaneron, Tesla, 32, 2, 50)
     
 def draw():
     frameRate(50)

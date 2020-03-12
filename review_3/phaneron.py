@@ -32,10 +32,10 @@ class phaneron():
         
         
     def __init__(self, roadMap, refTes):
-        self.posX = 490
-        self.posY = 0
-        self.subsize = 70
-        self.subcount = 3
+        self.posX = 1155
+        self.posY = 35
+        self.subsize = 140
+        self.subcount = 1
         self.side = self.subsize*self.subcount
         self.chunkSide = 140
         temp = chunkCentres(roadMap)
@@ -128,7 +128,7 @@ class phaneron():
         translate(self.posX + self.side/2, self.posY + self.side/2)
         rectMode(CENTER)
         image(self.dispImage, 0, 0, 42, 87) #70% reduction in size
-        for i in range(self.nearestChunks):
+        for i in range(3):
             a = self.nearestChunkCentres[i]
             b = self.nearestChunkTypes[i]
             c = self.nearestChunkOmits[i]
